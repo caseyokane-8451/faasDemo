@@ -50,7 +50,9 @@ public class PasswordController {
 
       userService.save(user);
 
-      String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080";
+      String appUrl = request.getScheme() + "://" + request.getServerName();
+
+      if(request.getServerName().equalsIgnoreCase("localhost")) { appUrl += ":8080"; }
 
       SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
       passwordResetEmail.setFrom("support@SuperFaaSApp.com");
